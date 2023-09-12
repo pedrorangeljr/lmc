@@ -22,16 +22,21 @@
         <h1></h1>
       </div>
       <div class="login-box">
-        <form class="login-form" action="index.html">
+      
+        <form class="login-form" action="ServletUsuario" method="post">
+        
           <h3 class="login-head"><i class="bi bi-person me-2"></i>Login</h3>
+          
           <div class="mb-3">
             <label class="form-label">E-mail</label>
-            <input class="form-control" type="text" placeholder="Email" autofocus>
+            <input class="form-control" type="email" id="email" name="email" placeholder="Email" autofocus>
           </div>
+          
           <div class="mb-3">
             <label class="form-label">Senha</label>
-            <input class="form-control" type="password" placeholder="Password">
+            <input class="form-control" type="password" id="senha" name="senha" placeholder="Password">
           </div>
+          
           <div class="mb-3">
             <div class="utility">
               <div class="form-check">
@@ -45,7 +50,9 @@
           <div class="mb-3 btn-container d-grid">
             <button class="btn btn-primary btn-block"><i class="bi bi-box-arrow-in-right me-2 fs-5"></i>SIGN IN</button>
           </div>
+          
         </form>
+        
         <form class="forget-form" action="index.html">
           <h3 class="login-head"><i class="bi bi-person-lock me-2"></i>Forgot Password ?</h3>
           <div class="mb-3">
@@ -59,6 +66,7 @@
             <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="bi bi-chevron-left me-1"></i> Back to Login</a></p>
           </div>
         </form>
+        
       </div>
     </section>
     <!-- Essential javascripts for application to work-->
