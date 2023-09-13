@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DaoUsuario;
 import models.Login;
 
 @WebServlet(urlPatterns = {"/principal/ServletUsuario","/ServletUsuario"})
 public class ServletUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private DaoUsuario daoUsuario = new DaoUsuario();
 
 	public ServletUsuario() {
 		super();
@@ -41,8 +44,7 @@ public class ServletUsuario extends HttpServlet {
 				login.setEmail(email);
 				login.setSenha(senha);
 
-				if (login.getEmail().equalsIgnoreCase("admin@gmail.com")
-						&& login.getSenha().equalsIgnoreCase("admin")) {
+				if (daoUsuario.validarAutenticacao(login)) {
 
 					request.getSession().setAttribute("usuario", login.getEmail());
 
