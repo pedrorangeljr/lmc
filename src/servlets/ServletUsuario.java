@@ -11,62 +11,65 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Login;
 
-
-@WebServlet("/ServletUsuario")
+@WebServlet(urlPatterns = {"/principal/ServletUsuario","/ServletUsuario"})
 public class ServletUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public ServletUsuario() {
-        super();
-        
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public ServletUsuario() {
+		super();
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		try {
-			
+
 			String email = request.getParameter("email");
 			String senha = request.getParameter("senha");
-			
-			if(email !=null && !email.isEmpty() && senha != null && !senha.isEmpty()) {
-				
+			String url = request.getParameter("url");
+
+			if (email != null && !email.isEmpty() && senha != null && !senha.isEmpty()) {
+
 				Login login = new Login();
-				
+
 				login.setEmail(email);
 				login.setSenha(senha);
-				
-				if(login.getEmail().equalsIgnoreCase("admin@gmail.com") && login.getSenha().equalsIgnoreCase("admin")) {
-					
+
+				if (login.getEmail().equalsIgnoreCase("admin@gmail.com")
+						&& login.getSenha().equalsIgnoreCase("admin")) {
+
 					request.getSession().setAttribute("usuario", login.getEmail());
-					
-					RequestDispatcher dispatcher = request.getRequestDispatcher("principal/principal.jsp");
+
+					if (url == null || url.equals("null")) {
+
+						url = "principal/principal.jsp";
+					}
+
+					RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 					dispatcher.forward(request, response);
-					
-				}
-				else {
-					
+
+				} else {
+
 					RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 					request.setAttribute("msg", "Login e /ou Senha errado");
 					dispatcher.forward(request, response);
-					
+
 				}
-			}
-			else {
-				
+			} else {
+
 				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 				request.setAttribute("msg", "Login e /ou Senha errado");
 				dispatcher.forward(request, response);
 			}
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 	}
