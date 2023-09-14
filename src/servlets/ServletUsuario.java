@@ -39,7 +39,7 @@ public class ServletUsuario extends HttpServlet {
 
 			if (email != null && !email.isEmpty() && senha != null && !senha.isEmpty()) {
 
-				Login login = new Login();
+				Login login =  null;//new Login();
 
 				login.setEmail(email);
 				login.setSenha(senha);
@@ -73,6 +73,10 @@ public class ServletUsuario extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("erro.jsp");
+			request.setAttribute("msg", e.getMessage());
+			dispatcher.forward(request, response);
 		}
 	}
 
