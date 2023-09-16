@@ -39,7 +39,7 @@ public class ServletUsuario extends HttpServlet {
 
 			if (email != null && !email.isEmpty() && senha != null && !senha.isEmpty()) {
 
-				Login login =  null;//new Login();
+				Login login = new Login();
 
 				login.setEmail(email);
 				login.setSenha(senha);
