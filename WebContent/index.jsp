@@ -65,7 +65,6 @@
             </div>
           </div>
         </div>
-        
         </form>
               
         <h3>${msg }</h3>

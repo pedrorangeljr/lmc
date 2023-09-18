@@ -25,9 +25,9 @@
             </a>
           </li>
           <li>
-            <a href="./alunos.html">
+            <a href="<%= request.getContextPath()%>/principal/funcionario.jsp">
               <i class="nc-icon nc-diamond"></i>
-              <p>Alunos</p>
+              <p>Funcionários</p>
             </a>
           </li>
           <li>
