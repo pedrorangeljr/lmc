@@ -36,13 +36,13 @@
 										<div class="col-md-5 pr-1">
 											<div class="form-group">
 												<label>ID</label> <input type="text" class="form-control"
-													disabled="" placeholder="id" value="">
+													disabled="" name="id" id="id" placeholder="id" value="">
 											</div>
 										</div>
 										<div class="col-md-3 px-1">
 											<div class="form-group">
 												<label>Nome</label> <input type="text" class="form-control"
-													placeholder="name" name="nome" id="">
+													placeholder="name" name="nome" id="nome">
 											</div>
 										</div>
 										<div class="col-md-4 pl-1">
@@ -169,6 +169,25 @@
 	</div>
 	<!--   Core JS Files   -->
 	<jsp:include page="script.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+	   
+	
+	$( function() {
+		  
+		  $("#dataNascimento").datepicker({
+			    dateFormat: 'dd/mm/yy',
+			    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+			    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+			    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+			    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+			    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+			    nextText: 'Próximo',
+			    prevText: 'Anterior'
+			});
+	} );
+	  
+	</script>
 </body>
 
 </html>
