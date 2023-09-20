@@ -1,2 +1,6 @@
-/servlets/
+/conexao/
 /dao/
+/filter/
+/models/
+/servlets/
+/sql/

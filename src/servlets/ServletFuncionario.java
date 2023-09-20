@@ -1,21 +1,25 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DaoFuncionario;
 import models.Funcionarios;
 
 
 @WebServlet("/ServletFuncionario")
 public class ServletFuncionario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	private DaoFuncionario daoFuncionario = new DaoFuncionario();
    
     public ServletFuncionario() {
         super();
@@ -53,11 +57,11 @@ public class ServletFuncionario extends HttpServlet {
 			funcionario.setIdFuncionario(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
 			funcionario.setNome(nome);
 			funcionario.setTelefone(telefone);
-			funcionario.setDataNascimento(new SimpleDateFormat("dd/mm/YYY").parse(dataNascimento));
+			funcionario.setDataNascimento(new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataNascimento).getTime()));
 			funcionario.setEmail(email);
 			funcionario.setRg(rg);
 			funcionario.setSexo(sexo);
-			funcionario.setDataCadastro(new SimpleDateFormat("dd/mm/YYYY").parse(dataCadastro));
+			funcionario.setDataCadastro(new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataCadastro).getTime()));
 			funcionario.setCpf(cpf);
 			funcionario.setCep(cep);
 			funcionario.setLogradouro(logradouro);
@@ -66,6 +70,14 @@ public class ServletFuncionario extends HttpServlet {
 			funcionario.setCidade(cidade);
 			funcionario.setUf(uf);
 			
+			
+			if(id == null || id.isEmpty()) {
+				
+				daoFuncionario.salvarFuncionarios(funcionario);
+			}
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("principal.jsp");
+			dispatcher.forward(request, response);
 			
 			
 		} catch (Exception e) {

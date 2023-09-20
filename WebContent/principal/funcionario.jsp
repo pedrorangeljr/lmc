@@ -31,7 +31,9 @@
 								<h5 class="card-title">Cadastro de Funcionários</h5>
 							</div>
 							<div class="card-body">
-								<form>
+							
+								<form action="<%=request.getContextPath()%>/ServletFuncionario" method="post">
+								
 									<div class="row">
 										<div class="col-md-5 pr-1">
 											<div class="form-group">
@@ -93,7 +95,7 @@
 										<div class="col-md-4 pl-1">
 											<div class="form-group">
 												<label>Data de Cadastro</label> <input type="date" class="form-control"
-													placeholder="dataCadastro" name="uf" id="dataCadastro">
+													placeholder="dataCadastro" name="dataCadastro" id="dataCadastro">
 											</div>
 										</div>
 									</div>
@@ -107,7 +109,7 @@
 										</div>
 										<div class="col-md-6 pl-1">
 											<div class="form-group">
-												<label>Cep</label> <input type="text" class="form-control"
+												<label>Cep</label> <input type="text" class="form-control" onblur="pesquisaCep();"
 													placeholder="cep" name="cep" id="cep">
 											</div>
 										</div>
@@ -157,8 +159,11 @@
 										<div class="update ml-auto mr-auto">
 											<button type="submit" class="btn btn-primary btn-round">Cadastrar</button>
 										</div>
+										
 									</div>
+									
 								</form>
+								
 							</div>
 						</div>
 					</div>
@@ -171,6 +176,28 @@
 	<jsp:include page="script.jsp"></jsp:include>
 	
 	<script type="text/javascript">
+	
+	function pesquisaCep() {
+
+		var cep = $('#cep').val();
+
+		$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+				function(dados) {
+
+					if (!("erro" in dados)) {
+
+						$('#cep').val(dados.cep);
+						$("#logradouro").val(dados.logradouro);
+						$("#bairro").val(dados.bairro);
+						$("#cidade").val(dados.localidade);
+						$("#uf").val(dados.uf);
+
+					}
+
+				});
+
+	}
+
 	   
 	
 	$( function() {
